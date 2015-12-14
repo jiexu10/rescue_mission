@@ -1,0 +1,38 @@
+new question page
+
+<%= form_for(@question, html: { class: "new_question" }) do |f| %>
+
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+<!-- <form method="post" action="<%= questions_path %>">
+  <label for="Title">Title</label>
+  <input type="text" name="question[title]" id="title" value="<%= @question.title %>" required>
+  <label for="Description">Description</label>
+  <input type="text" name="question[description]" id="description" value="<%= @question.description %>" required>
+  <input type="submit" value="Add">
+</form> -->

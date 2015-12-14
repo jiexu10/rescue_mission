@@ -1,0 +1,11 @@
+<h1>questions R us</h1>
+
+<%= link_to 'New Question', new_question_path %>
+
+<ul>
+  <% @questions.each do |question| %>
+    <li>
+      <%= link_to "#{question.title}", question_path(question) %>
+    </li>
+  <% end %>
+</ul>
