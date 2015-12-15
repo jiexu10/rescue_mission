@@ -16,7 +16,9 @@ FactoryGirl.define do
   end
 
   factory :answer do
-
+    sequence(:description) { |n| "descriptionthatistotallyover50charactersIhopeButItWasntNowItIs#{n}"}
+    question
+    # user
   end
 
 end

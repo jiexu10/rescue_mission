@@ -39,7 +39,7 @@ feature 'user posts a question' do
 
     expect(find_field('question[title]').value).to eq(title)
     expect(find_field('question[description]').value).to eq(description)
-    expect(page).to have_content('1 error prohibited this article from being saved:')
+    expect(page).to have_content('1 error prohibited this question from being saved:')
     expect(page).to have_content('Title is too short (minimum is 40 characters)')
   end
 
@@ -54,7 +54,7 @@ feature 'user posts a question' do
 
     expect(find_field('question[title]').value).to eq(title)
     expect(find_field('question[description]').value).to eq(description)
-    expect(page).to have_content('1 error prohibited this article from being saved:')
+    expect(page).to have_content('1 error prohibited this question from being saved:')
     expect(page).to have_content('Description is too short (minimum is 150 characters)')
   end
 
@@ -69,7 +69,7 @@ feature 'user posts a question' do
 
     expect(find_field('question[title]').value).to eq(title)
     expect(find_field('question[description]').value).to eq(description)
-    expect(page).to have_content('2 errors prohibited this article from being saved:')
+    expect(page).to have_content('2 errors prohibited this question from being saved:')
     expect(page).to have_content('Title is too short (minimum is 40 characters)')
     expect(page).to have_content('Description is too short (minimum is 150 characters)')
   end
