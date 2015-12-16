@@ -8,6 +8,9 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @answer = Answer.new
     @answers = @question.answers.order(created_at: :desc)
+    if @question.best_answer
+      @answers = @answers - [@question.best_answer]
+    end
   end
 
   def new
@@ -30,9 +33,16 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
+    notices = []
+
+    if params[:best_answer_id]
+      notices << 'Successfully updated best answer'
+    end
+
+    notices << 'Question Edited Successfully!'
 
     if @question.update(question_params)
-      redirect_to @question, notice: 'Question Edited Successfully!'
+      redirect_to @question, notice: notices
     else
       render :edit
     end
@@ -45,6 +55,6 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit(:title, :description)
+    params.require(:question).permit(:title, :description, :best_answer_id)
   end
 end

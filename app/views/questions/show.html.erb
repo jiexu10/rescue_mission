@@ -1,7 +1,11 @@
+<% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true, highlight: true) %>
+
 question show page
 
 Title: <%= @question.title %>
-Description: <%= @question.description %>
+Description:
+<%= markdown.render(@question.description).html_safe %>
+
 
 <%= link_to 'Edit Question', edit_question_path(@question) %>
 <%= button_to 'Delete Question', @question, method: :delete %>
@@ -38,10 +42,21 @@ New Answer:
 No answers yet!
 <% else %>
   Answers:
-  <ul>
+  <ul class="answer-list">
+    <% if @question.best_answer %>
+      <h3>Best Answer</h3>
+      <li class="best-answer">
+        <%= markdown.render(@question.best_answer.description).html_safe %>
+      </li>
+      <hr>
+    <% else %>
+      No Best Answer Chosen Yet!
+    <% end %>
+
     <% @answers.each do |answer| %>
-    <li>
-      <%= answer.description %>
+    <li class="other-answer">
+      <%= button_to 'Best Answer', { controller: 'questions', action: 'update', question: { best_answer_id: answer.id } }, method: 'patch'  %>
+      <%= markdown.render(answer.description).html_safe %>
     </li>
     <% end %>
   </ul>
