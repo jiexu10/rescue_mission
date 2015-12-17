@@ -24,6 +24,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rspec-rails'
 gem 'foundation-rails'
 
+gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-facebook', '~> 1.4.1'
 gem 'rails_12factor', group: :production
 gem 'redcarpet'
 # Use ActiveModel has_secure_password
