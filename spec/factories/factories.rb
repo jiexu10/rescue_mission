@@ -14,7 +14,7 @@ FactoryGirl.define do
 
   factory :user do
     provider "facebook"
-    # sequence(:uid) { |n| n }
+    # sequence(:uid) { |n| n ta
     # sequence(:username) { |n| "jarlax#{n}" }
     # sequence(:email) { |n| "jarlax#{n}@email.com" }
     # sequence(:avatar_url) { |n| "image#{n}.jpeg" }
