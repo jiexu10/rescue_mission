@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rspec-rails'
+gem 'foundation-rails'
 
 gem 'redcarpet'
 # Use ActiveModel has_secure_password
