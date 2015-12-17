@@ -8,35 +8,11 @@ Description:
 
 
 <%= link_to 'Edit Question', edit_question_path(@question) %>
-<%= button_to 'Delete Question', @question, method: :delete %>
+<%= button_to 'Delete Question', @question, { method: :delete, class: 'button tiny' } %>
 
 New Answer:
 
-<%= form_for [@question, @answer] do |f| %>
-
-  <% if @answer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
-
-      <ul>
-      <% @answer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-
-<% end %>
-
+<%= render "layouts/answer_form" %>
 
 <% if @answers.nil? %>
 No answers yet!
@@ -55,7 +31,7 @@ No answers yet!
 
     <% @answers.each do |answer| %>
     <li class="other-answer">
-      <%= button_to 'Best Answer', { controller: 'questions', action: 'update', question: { best_answer_id: answer.id } }, method: 'patch'  %>
+      <%= button_to 'Best Answer', { controller: 'questions', action: 'update', question: { best_answer_id: answer.id } }, { method: 'patch', class: 'button tiny' }  %>
       <%= markdown.render(answer.description).html_safe %>
     </li>
     <% end %>
